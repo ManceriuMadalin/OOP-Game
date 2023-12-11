@@ -76,7 +76,6 @@ class SecondMaze extends FirstMaze {
         boolean down = true;
         boolean left = true;
         boolean right = true;
-        boolean freeway;
 
         for (int i = 0; i < stones.length; i++) {
             if ((stones[i].getX() == player.getX()) && (stones[i].getY() == player.getY() + 50)) {
@@ -90,17 +89,15 @@ class SecondMaze extends FirstMaze {
             }
         }
 
-        System.out.println("up:" + up);
-        System.out.println("down:" + down);
-        System.out.println("left:" + left);
-        System.out.println("right:" + right);
-
         if (up && down && left && right) {
-            freeway = true;
+            moveCubs(player, stones, finishes, true, direction);
         } else {
-            freeway = false;
+            moveCubs(player, stones, finishes, false, direction);
         }
 
+    }
+
+    public static void moveCubs(Cub player, Cub[] stones, Cub[] finishes, boolean freeway, String direction) {
         if (freeway) {
             if (direction == "up") {
                 player.up();
@@ -111,8 +108,104 @@ class SecondMaze extends FirstMaze {
             } else if (direction == "right") {
                 player.right();
             }
+        } else {
+            if (direction == "up") {
+                boolean anotherStone = false;
+                Cub colideStone = null;
+
+                for (Cub stone : stones) {
+                    if ((stone.getX() == player.getX()) && (stone.getY() == player.getY() - 50)) {
+                        colideStone = stone;
+                        break;
+                    }
+                }
+
+                if (colideStone != null) {
+                    for (Cub stone : stones) {
+                        if ((colideStone.getX() == stone.getX()) && (colideStone.getY() - 50 == stone.getY())) {
+                            anotherStone = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!anotherStone) {
+                    player.up();
+                    colideStone.up();
+                }
+            } else if (direction == "down") {
+                boolean anotherStone = false;
+                Cub colideStone = null;
+
+                for (Cub stone : stones) {
+                    if ((stone.getX() == player.getX()) && (stone.getY() == player.getY() + 50)) {
+                        colideStone = stone;
+                        break;
+                    }
+                }
+
+                if (colideStone != null) {
+                    for (Cub stone : stones) {
+                        if ((colideStone.getX() == stone.getX()) && (colideStone.getY() + 50 == stone.getY())) {
+                            anotherStone = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!anotherStone) {
+                    player.down();
+                    colideStone.down();
+                }
+            } else if (direction == "left") {
+                boolean anotherStone = false;
+                Cub colideStone = null;
+
+                for (Cub stone : stones) {
+                    if ((stone.getX() == player.getX() - 50) && (stone.getY() == player.getY())) {
+                        colideStone = stone;
+                        break;
+                    }
+                }
+
+                if (colideStone != null) {
+                    for (Cub stone : stones) {
+                        if ((colideStone.getX() - 50 == stone.getX()) && (colideStone.getY() == stone.getY())) {
+                            anotherStone = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!anotherStone) {
+                    player.left();
+                    colideStone.left();
+                }
+            } else if (direction.equals("right")) {
+                boolean anotherStone = false;
+                Cub colideStone = null;
+
+                for (Cub stone : stones) {
+                    if ((stone.getX() == player.getX() + 50) && (stone.getY() == player.getY())) {
+                        colideStone = stone;
+                        break;
+                    }
+                }
+
+                if (colideStone != null) {
+                    for (Cub stone : stones) {
+                        if ((colideStone.getX() + 50 == stone.getX()) && (colideStone.getY() == stone.getY())) {
+                            anotherStone = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!anotherStone) {
+                    player.right();
+                    colideStone.right();
+                }
+            }
         }
     }
-
-    public static void 
 }
