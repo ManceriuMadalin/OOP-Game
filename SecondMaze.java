@@ -10,6 +10,7 @@ class SecondMaze extends FirstMaze {
     public static boolean down = true;
     public static boolean left = true;
     public static boolean right = true;
+    public static int markedFinishes = 0;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -132,6 +133,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.up();
                     colideStone.up();
+                    checkWin(player,colideStone, finishes);
                 }
             } else if (direction == "down") {
                 boolean anotherStone = false;
@@ -156,6 +158,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.down();
                     colideStone.down();
+                    checkWin(player,colideStone, finishes);
                 }
             } else if (direction == "left") {
                 boolean anotherStone = false;
@@ -180,6 +183,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.left();
                     colideStone.left();
+                    checkWin(player,colideStone, finishes);
                 }
             } else if (direction.equals("right")) {
                 boolean anotherStone = false;
@@ -204,8 +208,29 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.right();
                     colideStone.right();
+                    checkWin(player,colideStone, finishes);
                 }
             }
+        }
+    }
+
+    public static void checkWin(Cub player ,Cub colideStone, Cub[] finishes) {
+        for (Cub finish : finishes) {
+            if ((colideStone.getX() == finish.getX()) && (colideStone.getY() == finish.getY())) {
+                markedFinishes++;
+            }
+        }
+
+        if (markedFinishes == 3) {
+            JLabel winLabel = new JLabel("You Win!");
+
+            winLabel.setBounds(200, 100, 200, 50);
+            winLabel.setFont(new Font("Arial", Font.BOLD, 25));
+            winLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+            player.getParent().add(winLabel);
+            player.getParent().revalidate();
+            player.getParent().repaint();
         }
     }
 }
