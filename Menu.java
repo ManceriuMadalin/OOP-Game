@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 public class Menu {
@@ -31,8 +30,7 @@ public class Menu {
 
         addButton("Level I", 150, 100, 100, 50, "FirstMaze.java");
         addButton("Level II", 300, 100, 100, 50, "SecondMaze.java");
-        addButton("Level III", 450, 100, 100, 50, "SecondMaze.java");
-
+        addButton("Level III", 450, 100, 100, 50, "ThirdMaze.java");
         frame.add(panel);
 
         frame.setVisible(true);
