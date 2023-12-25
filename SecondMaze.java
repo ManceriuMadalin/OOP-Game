@@ -1,15 +1,7 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 class SecondMaze extends FirstMaze {
-    public static boolean up = true;
-    public static boolean down = true;
-    public static boolean left = true;
-    public static boolean right = true;
     public static int markedFinishes = 0;
 
     public static void main(String[] args) {
@@ -95,7 +87,6 @@ class SecondMaze extends FirstMaze {
         } else {
             moveCubs(player, stones, finishes, false, direction);
         }
-
     }
 
     public static void moveCubs(Cub player, Cub[] stones, Cub[] finishes, boolean freeway, String direction) {
@@ -133,7 +124,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.up();
                     colideStone.up();
-                    checkWin(player,colideStone, finishes);
+                    checkWin(player, colideStone, finishes);
                 }
             } else if (direction == "down") {
                 boolean anotherStone = false;
@@ -158,7 +149,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.down();
                     colideStone.down();
-                    checkWin(player,colideStone, finishes);
+                    checkWin(player, colideStone, finishes);
                 }
             } else if (direction == "left") {
                 boolean anotherStone = false;
@@ -183,7 +174,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.left();
                     colideStone.left();
-                    checkWin(player,colideStone, finishes);
+                    checkWin(player, colideStone, finishes);
                 }
             } else if (direction.equals("right")) {
                 boolean anotherStone = false;
@@ -208,7 +199,7 @@ class SecondMaze extends FirstMaze {
                 if (!anotherStone) {
                     player.right();
                     colideStone.right();
-                    checkWin(player,colideStone, finishes);
+                    checkWin(player, colideStone, finishes);
                 }
             }
         }
